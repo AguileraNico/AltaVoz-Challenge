@@ -1,0 +1,52 @@
+<div class="mx-6 my-3 text-white">
+    <div class="flex flex-row items-center justify-between mb-4">
+        <a href="{{userInfo.backRoute}}">
+            <span class="material-symbols-outlined">
+                arrow_back_ios
+            </span>
+        </a>
+        <div class="flex flex-col justify-center">
+            {{userInfo.name}}
+            <pre class="text-xs">{{userInfo.nameCode}}</pre>
+        </div>
+        <span class="material-symbols-outlined">
+            {{userType === 'Common-User' ? 'share' : 'close'}}
+        </span>
+    </div>
+    <ng-container *ngIf="userType === 'Common-User'">
+        <div class="flex flex-row justify-between mb-3">
+            <app-round-picture></app-round-picture>
+            <div class="flex flex-col items-center">
+                {{userInfo.followers | numberPipe}}
+                <pre class="text-xs">Seguidores</pre>
+            </div>
+            <div class="flex flex-col items-center">
+                {{userInfo.following | numberPipe}}
+                <pre class="text-xs">Siguiendo</pre>
+            </div>
+            <div class="flex flex-col items-center">
+                {{userInfo.votes | numberPipe}}
+                <pre class="text-xs">Votos</pre>
+            </div>
+        </div>
+        <p class="mb-3">{{userInfo.description}}</p>
+        <div class="flex flex-wrap mb-3">
+            <div class="bg-clip-padding bg-neutral-800 rounded-md pb-1 px-2 flex items-center mr-2 mb-2"
+                *ngFor="let tag of userInfo.tags">{{tag.key}}: {{tag.value}}</div>
+        </div>
+        <div class="flex flex-row items-center">
+            <button class="justify-self-end bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded-full">
+                {{userInfo.isFollowing ? 'Siguiendo' : 'Seguir'}}
+            </button>
+            <div style="margin-left: auto;" class="flex">
+                <a class="cursor-pointer mr-5">
+                    <img src="../../../../assets/instagram.png" alt="" height="50" width="50">
+                </a>
+                <a class="cursor-pointer mr-3">
+                    <img src="../../../../assets/tiktok.png" class="" alt="" height="34" width="34">
+                </a>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<app-navigator [navItems]="navigationItems | async" [type]="'profile'"></app-navigator>

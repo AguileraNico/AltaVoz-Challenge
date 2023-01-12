@@ -1,0 +1,17 @@
+<nav [ngClass]="{'bg-neutral-800': type === 'bottom', 'bg-neutral-900': type === 'profile'}" class="sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+            <div class="flex flex-1 items-center justify-around sm:items-stretch sm:space-around" [ngClass]="{'border-b': type === 'profile'}">
+                <ng-container *ngFor="let item of navItems">
+                    <a [href]="item.link" class="text-white px-3 py-2 rounded-md text-sm font-medium flex flex-col items-center"
+                        aria-current="page">
+                        <span class="material-symbols-outlined">
+                            {{item.icon}}
+                            </span>
+                        {{item.text}}
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</nav>

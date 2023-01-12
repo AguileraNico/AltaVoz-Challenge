@@ -1,0 +1,20 @@
+<div class="m-2 text-white" *ngIf="{comissions: comissions | async} as Obj">
+    <div class="bg-stone-800 rounded-sm">
+        <app-carrousel></app-carrousel>
+        <div class="flex items-center text-sm text-center p-3">
+            Accede a tu cuenta de altaVoz en desktop para descargar el desglose de ventas.
+        </div>
+    </div>
+    <ng-container *ngFor="let detail of Obj.comissions?.details">
+        <div class="flex flex-row justify-between mb-3 mt-4">
+            <h6>{{detail.title}}</h6>
+            <h5>ARS {{detail.amount | number}}</h5>
+        </div>
+        <p class="text-xs mb-4">{{detail.description}}</p>
+        <div *ngIf="detail.needToReach" class="flex flex-col mb-4">
+            <mat-progress-bar mode="determinate" [value]="detail.actual/detail.needToReach*100"></mat-progress-bar>
+            <p style="margin-left: auto;">ARS {{detail.needToReach | number}}</p>
+        </div>
+        <mat-divider></mat-divider>
+    </ng-container>
+</div>

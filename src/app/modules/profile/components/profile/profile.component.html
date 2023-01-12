@@ -1,0 +1,4 @@
+<ng-container *ngIf="{user: userInformation | async} as Obj">
+    <app-profile-header [userInfo]="Obj.user"></app-profile-header>
+    <router-outlet></router-outlet>
+</ng-container>

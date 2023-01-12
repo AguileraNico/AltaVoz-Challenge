@@ -1,0 +1,6 @@
+<ng-container *ngIf="{data: feedData | async} as Obj">
+    <div *ngFor="let post of Obj.data">
+        <app-post-component [post]="post"></app-post-component>
+        <mat-divider></mat-divider>
+    </div>
+</ng-container>
